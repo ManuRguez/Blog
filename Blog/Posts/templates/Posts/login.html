@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+
+{% block content %}
+  <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card" style="width: 100%; max-width: 400px;">
+      <div class="card-body">
+        <h1 class="card-title text-center mb-4">Iniciar sesión</h1>
+
+        {% if error %}
+          <div class="alert alert-danger" role="alert">
+            {{ error }}
+          </div>
+        {% endif %}
+
+        <form action="/" method="POST">
+          {% csrf_token %}
+
+          <!-- Usuario -->
+          <div class="mb-3 d-flex align-items-center">
+            <label for="username" class="form-label me-2" style="width: 80px;">User</label>
+            <div class="flex-grow-1">
+              {{ form.username}}
+            </div>
+          </div>
+
+          <!-- Contraseña -->
+          <div class="mb-3 d-flex align-items-center">
+            <label for="password" class="form-label me-2" style="width: 80px;">Password</label>
+            <div class="flex-grow-1">
+              {{ form.password}}
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
+        </form>
+
+        <!-- Texto de registro debajo del botón -->
+        <p class="text-center mt-3">
+          ¿No tienes cuenta? <a href="{% url 'register' %}">Regístrate</a>
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

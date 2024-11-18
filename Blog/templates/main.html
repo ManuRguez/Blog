@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static%}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}"> <!-- Aqui indicamos donde esta nuestro archivo css-->
+
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+<!--Marca el inicio de una sección o bloque que se puede sobrescribir en plantillas hijas.-->
+    {% block content %}
+
+    <!-- Marca el final de ese bloque -->
+    {% endblock content %}
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>  <!-- Aqui indicamos donde esta nuestro archivo bootstrap-->
+
+    
+</body>
+</html>

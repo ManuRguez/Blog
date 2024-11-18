@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container" >
+        <div class="col-8">
+            {% for field in form %}
+        
+            <label class="form-label">{{field.label}}:</label>
+            
+            <br>
+
+            {{form.media}} 
+            {{field}}
+            
+            <br>
+            
+            
+            {% endfor %}
+        </div>
+        <br>
+
+        <!-- Aqui lo que estamos haciendo es que si la variable es == 1 se cambie  el nombre de crear a Actualizar-->
+        {% if update == 1 %}
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+
+        {% else %}
+        <button type="submit" class="btn btn-primary">Crear</button>
+        {% endif %}
+        
+        </div>
+</form>
+
+
+{% endblock content %}

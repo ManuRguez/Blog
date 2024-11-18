@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="position-absolute top-50 start-50 translate-middle">
+                <div class="card text-bg-dark mb-3" style="max-width: 25rem;">
+                    <form class="form" method="POST" action="">
+                        {% csrf_token %}
+                    <div class="card-header">Eliminar</div>
+                    <div class="card-body">
+                        <h5 class="card-title">¿Está usted seguro de que quiere eliminar el post "{{post.title}}"? </h5>
+                         <input class="btn btn-danger" type="submit" value="Confirmar"> <!-- Botón de confirmar eliminación-->
+                         <!-- Aquí se usa next para redirigir de vuelta a la página anterior o al home si no se especifica 'next' -->
+                         <a class="btn btn-secondary" href="{{ request.GET.next|default:'/' }}">Volver</a>
+                     </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

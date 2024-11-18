@@ -1,0 +1,39 @@
+{% extends 'main.html'%}
+
+<h1>Post Page</h1>
+
+{% block content %}
+<div class="container">
+    <img class="img-thumbnail mb-3" src="{{ post.image_portada.url }}">
+
+    <h2>{{ post.title }}</h2>
+    <br>
+    <h5>{{ post.subtitle }}</h5>
+    <br>
+    <p>{{ post.description|safe }}</p>
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <!-- Botón para volver atrás pegado a la izquierda -->
+        <a type="button" class="btn btn-secondary mb-3" href="javascript:history.back()">
+            <i class="bi bi-arrow-left"></i> Volver atrás
+        </a>
+    
+        <!-- Contenedor central para los botones de editar y eliminar -->
+        {% if is_author %}
+        <div class="d-flex justify-content-center gap-2">
+            <!-- Botón de editar -->
+            <a type="button" class="btn btn-warning mb-3" href="{% url 'updatePost' post.id %}">
+                <i class="bi bi-pencil-square"></i> Editar
+            </a>
+            <!-- Botón de eliminar -->
+            <a type="button" class="btn btn-danger mb-3" href="{% url 'deletePost' post.id %}?next={{ request.path }}">
+                <i class="bi bi-trash"></i> Eliminar Post
+            </a>
+        </div>
+        {% endif %}
+        
+        <!-- Elemento invisible para ocupar espacio y equilibrar la distribución -->
+        <div></div>
+    </div>
+    
+</div>
+{% endblock content %}
