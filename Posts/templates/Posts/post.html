@@ -1,0 +1,51 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- Título estilizado con el mismo color que el navbar -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold" style="color: #343a40;">
+            Details
+        </h1>
+    </div>
+
+    <!-- Imagen de portada ajustada -->
+    <div class="text-center mb-4">
+        <img class="img-fluid img-thumbnail" 
+             src="{{ post.image_portada.url }}" 
+             alt="Post Image" 
+             style="max-width: 50%; height: auto;">
+    </div>
+
+    <!-- Contenido del post -->
+    <div class="card shadow-sm p-4">
+        <h2 class="card-title text-center text-dark fw-bold">{{ post.title }}</h2>
+        <hr>
+        <h5 class="card-subtitle text-center text-secondary mb-3">{{ post.subtitle }}</h5>
+        <p class="card-text text-justify fs-5">{{ post.description|safe }}</p>
+    </div>
+
+    <!-- Controles de navegación y acciones -->
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <!-- Botón para volver atrás -->
+        <a type="button" class="btn btn-secondary mb-3" href="javascript:history.back()">
+            <i class="bi bi-arrow-left"></i> Volver atrás
+        </a>
+
+        <!-- Botones de editar y eliminar (centrados si es autor) -->
+        {% if is_author %}
+        <div class="d-flex justify-content-center gap-2">
+            <!-- Botón de editar -->
+            <a type="button" class="btn btn-warning mb-3" href="{% url 'updatePost' post.id %}">
+                <i class="bi bi-pencil-square"></i> Editar
+            </a>
+            <!-- Botón de eliminar -->
+            <a type="button" class="btn btn-danger mb-3" href="{% url 'deletePost' post.id %}?next={{ request.path }}">
+                <i class="bi bi-trash"></i> Eliminar Post
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}
